@@ -1,0 +1,41 @@
+﻿@model List<Infinite.MVCSampleProject.Models.Pets>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>List of pets</h2>
+@*@Html.ActionLink("Add New", "Create","Pets", null, new {@class="btn btn-info"})*@
+<div class="row">
+    <div class="col-md-4">
+        <table class="table table-hover">
+            <tr>
+                <th>
+                    Id
+                </th>
+                <th>
+                    Pet Name
+                </th>
+                <th>Action</th>
+            </tr>
+            @foreach (var p1 in Model)
+            {
+                <tr>
+                    <td>@p1.Id</td>
+                    <td>@Html.ActionLink(p1.PetName,"Details", "Pets", new { id = p1.Id }, null)</td>
+                  
+                    <td>@Html.ActionLink("Edit", "Edit", "Pets", new { id = p1.Id }, new { @class = "btn btn-info" })</td>
+                    <td>
+                        @using (Html.BeginForm("Delete", "Pets", new { id = p1.Id }, FormMethod.Post))
+                        {
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        }
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+</div>
+
+
+
+
